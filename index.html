@@ -26,7 +26,7 @@
     const email = document.getElementById('email').value;
 
     const { data, error } = await supabaseClient
-      .from('submissions')
+      .from('submission')
       .insert([{ name, email }]);
 
     if (error) {
