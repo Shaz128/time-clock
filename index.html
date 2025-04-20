@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Supabase Form</title>
+</head>
+<body>
+  <h2>Submit Your Info</h2>
+  <form id="myForm">
+    <input type="text" id="name" placeholder="Your Name" required><br><br>
+    <input type="email" id="email" placeholder="Your Email" required><br><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script>
+    const SUPABASE_URL = 'https://your-project.supabase.co'; // replace this
+    const SUPABASE_KEY = 'your-anon-key'; // replace this
+
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const form = document.getElementById('myForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+
+      const { data, error } = await supabase
+        .from('submissions')
+        .insert([{ name, email }]);
+
+      if (error) {
+        alert('Error: ' + error.message);
+      } else {
+        alert('Success! Data saved.');
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
