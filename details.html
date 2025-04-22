@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Member Details</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Simulate getting member details using the ID from the URL
+    function getMemberDetails() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const memberId = urlParams.get('id');
+
+      // For demo purposes, use static data based on the member ID
+      const members = [
+        { id: 123, name: 'John Doe', address: '123 Main St', phone: '555-1234' },
+        { id: 124, name: 'Jane Smith', address: '456 Elm St', phone: '555-5678' },
+        { id: 125, name: 'Michael Lee', address: '789 Oak St', phone: '555-8765' }
+      ];
+
+      const member = members.find(m => m.id == memberId);
+
+      if (member) {
+        document.getElementById('member-id').innerText = member.id;
+        document.getElementById('name').innerText = member.name;
+        document.getElementById('address').innerText = member.address;
+        document.getElementById('phone').innerText = member.phone;
+      }
+    }
+
+    // Call this function on page load
+    window.onload = getMemberDetails;
+  </script>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Member Details</h1>
+    <a href="index.html" class="cool-btn">Back to Dashboard</a>
+  </div>
+
+  <div class="details-container">
+    <div class="details-section">
+      <h2>Member Info</h2>
+      <p><strong>ID:</strong> <span id="member-id">Loading...</span></p>
+      <p><strong>Name:</strong> <span id="name">Loading...</span></p>
+      <p><strong>Current Address:</strong> <span id="address">Loading...</span></p>
+      <p><strong>Phone Number:</strong> <span id="phone">Loading...</span></p>
+    </div>
+
+    <div class="document-upload">
+      <h2>Upload Document</h2>
+      <input type="file" id="document-upload" class="form-input" />
+      <button class="cool-btn">Upload</button>
+    </div>
+
+    <h2>Documents List</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Document Name</th>
+          <th>Date Added</th>
+          <th>Has Signed?</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>Lease Agreement</td>
+            <td>2025-04-01</td>
+            <td>
+              <!-- Custom Toggle Switch -->
+              <label class="switch">
+                <input type="checkbox" />
+                <span class="slider"></span>
+              </label>
+            </td>
+            <td><button class="cool-btn">Download</button></td>
+          </tr>
+          <tr>
+            <td>Rental Application</td>
+            <td>2025-03-15</td>
+            <td>
+              <!-- Custom Toggle Switch -->
+              <label class="switch">
+                <input type="checkbox" />
+                <span class="slider"></span>
+              </label>
+            </td>
+            <td><button class="cool-btn">Download</button></td>
+          </tr>
+          
+        <!-- Additional documents can be added dynamically -->
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
